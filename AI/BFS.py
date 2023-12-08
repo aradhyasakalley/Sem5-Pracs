@@ -23,8 +23,6 @@ def bfs(graph, start, goal):
 
     return False
 
-
-
 def build_graph():
     graph = {}
     num_edges = int(input("Enter the number of edges: "))
