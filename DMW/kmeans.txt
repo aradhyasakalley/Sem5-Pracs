@@ -1,0 +1,13 @@
+Kmeans algorithm
+input : 
+set of elements D = {t1,t2,t3,......tn}
+k : number of clusters
+output : 
+K : set of clusters
+
+Kmeams algorithm : 
+    assing initial values to means m1,m2,....mk;
+    repeat : 
+        assign the item to the cluster with the closest mean;
+        re-calculate the means for each cluster;
+    until convergence

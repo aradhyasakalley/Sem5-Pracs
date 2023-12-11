@@ -1,0 +1,19 @@
+pam algorithmm
+input : 
+D = {t1,t2,t3,t4,....tn} set of elements
+k : number of clusters
+output : 
+K : set of clusters
+
+PAM algorithm : 
+    aribitarily select k mediods from D;
+    repeat : 
+        for each th not a mediod do : 
+            for each mediod ti do : 
+                calculate TChi;
+        find i,h where rge TChi is smallest;
+        if TChi < 0 then :
+            replace medios ti with th;
+    until TChi >=0;
+
+    assign each ti to Kj such that the distance d(ti,tj) is smallest for all mediods;

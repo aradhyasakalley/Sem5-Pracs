@@ -1,0 +1,30 @@
+DTBuild algo
+
+input : training data
+output : decision tree
+
+T = 0 
+determine; the best splitting criterion;
+T = create the root node and label with splitting attribute;
+T = add arc to the root node for each predicate value and label;
+for each arc do : 
+    D = database formed by applying splitting predicate to D;
+    if stopping point is reached for this path : 
+        T' = create leaf node and label appropriate class;
+    else : 
+        T' = DTBuild(D);
+    T = add T' to arc;
+
+
+DTProc algo
+input : training data and decision tree
+output : model predicted values
+
+DTProc algo : 
+    for each t E D do : 
+    n = root node of T;
+    while n not leaf node do : 
+        obtain answer for question on n applied to t;
+        identify the arc from t with correct answer;
+        n = node at end of this arc;
+    make predictions for t based on lbelling of n 
