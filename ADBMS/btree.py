@@ -1,17 +1,22 @@
 import time
-from BTrees.OOBTree import OOBTree
+from BTrees._IIBTree import IIBTree
 
-btree = OOBTree()
-data = range(10000)
+btree = IIBTree()
 
-start_time = time.time()
-for i in data:
-    btree[i] = i
-end_time = time.time()
-print(f"time taken to insert data into B Tree: {end_time - start_time} seconds")
+start_time = time.perf_counter()
+for i in range(100000):
+    btree.update({i:2*i})
+end_time = time.perf_counter()
 
-start_time = time.time()
-for i in data:
-    _=btree.get(i)
-end_time = time.time()
-print(f"Time taken to search data in B Tree: {end_time - start_time} seconds")
+print(f'The insertion time for the BTree is {round((end_time - start_time) * 1000, 3)} milliseconds')
+
+key = int(input('Enter the search key: '))
+
+start_time = time.perf_counter()
+if btree.has_key(key):
+    print(f'data for search key found : {btree[key]}')
+else : 
+    print('data for search key not found')
+end_time = time.perf_counter()
+
+print(f'The search time for the BTree is {round((end_time - start_time) * 1000, 3)} milliseconds')
