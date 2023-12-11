@@ -8,8 +8,8 @@ def twosComplement(num):
   
     return bin(int(onesComp,2) + int("1",2)).replace('0b',"")
 
-num1 = int(input('Enter number: '))
-num2 = int(input('Enter 2nd number: '))
+num1 = int(input('Enter the first number: '))
+num2 = int(input('Enter the second number: '))
 
 binNum1 = bin(abs(num1)).replace("0b",'')
 binNum2 = bin(abs(num2)).replace("0b",'')
@@ -75,3 +75,8 @@ if minus:
     print(int(ans,2) * -1)
 else:
     print(int(ans,2))
+
+
+
+       
+    

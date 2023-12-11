@@ -1,3 +1,4 @@
+// check the output in stack 
 DATA SEGMENT
 STRING1 DB 99H, 12H, 56H, 45H, 36H
 DATA ENDS
