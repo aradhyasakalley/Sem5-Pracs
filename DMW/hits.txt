@@ -1,0 +1,19 @@
+input : 
+W : www as a directed graph
+q : query 
+s: support
+
+output : 
+A : set of authority pages
+H : set of hub pages 
+
+HITS algo : 
+    R = SE(W,q);
+    B = R U {pages linked to from R} U {pages that link to pages in R};
+    G(B,L) = subgraphg of W induced by B;
+    G(B,L') = delete links in G within same site;
+    xp = sumamtion(q) where (p,q) E L' Xp;
+    yp = sumamtion(q) where (q,p) E L' Yp;
+    A = {p|p has one of the highest Xp};
+    H = {p|p has one the highest Yp};
+    

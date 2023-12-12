@@ -1,0 +1,28 @@
+FP tree algo 
+
+input : 
+D = transaction database
+min_support 
+output : 
+L set of frequeent itemsets
+
+FP tree generation is as follows : 
+
+1) Scan the database D once and generate a list of frequent items F with their support counts
+2) Sort the list F in descending order of support counts as L, the list of frequent items
+3) Create a root node for FPtree and mark it as null, for every transaction TRANS in the databse D, select and sort the frequent items in Trans according to the order in L let the sorted frequent items list in Trans be [p | P] where p is the most frequent items and P is the rest of the list of items
+call insert_tree([p|P],T) as follows : 
+if T has a child node N such that N.item_name = p.item_name then increment the count of N by one, else create a new node for N and set its count as 1, its parent-link with the node T and its node-link with the other nodes with same item name, via node link structure, if P is non-empty call insert_tree(P,T) recursively
+
+
+FPtree mining algo :
+FPgrowth(Tree,a')
+    if Tree contains a single path P then  
+        for each conbination of nodes in path P 
+            generate patterns B U a' with support_count = min support_count of nodes in p
+    else for each a in header {
+        generate pattern B = aUa' with support_count = a.support_count;
+        construct B conditional pattern and conditional pattern tree Tb
+        if Tb != 0 : 
+            call FPgrowth(Tb,B)
+    }

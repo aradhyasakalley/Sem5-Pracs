@@ -1,0 +1,34 @@
+Apriori algorithm
+input : 
+I = itemsets
+D = database of transaction
+s = support
+
+output : 
+L = large itemsets
+
+apriori algo : 
+
+k = 0 // scan number
+L = 0;
+
+C1 = I // inital candidates selected as itemsets
+
+repeat : 
+    k = k + 1;
+    Lk = 0;
+    for each Ii E Ck : 
+        ci = 0 // initialize count as 0;
+    
+    for each tj E D do :
+        if Ii E Ck do : 
+            if Ii E tj : 
+                ci = ci + 1;
+    
+    for each Ii E Ck  do 
+        if ci >= (s * |D|) do 
+            Lk = Lk U Ii
+    
+    L = L U Lk;
+    Ck+1 = apriori(Lk);
+until Ck+1 = 0;

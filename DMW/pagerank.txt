@@ -1,0 +1,21 @@
+// https://swang21.medium.com/what-is-googles-pagerank-algorithm-d0ac17cbc167
+
+
+pageRank(G,n)
+    d <- 0.15
+    N <- number of nodes in G //number of pages
+
+    for all nodes v in G : 
+        initia the ranks for v = 1/N;
+    while n > 0 : 
+        for all v with links from ui and uj with no outlinks :
+            rank(v) = d/N + (1-d)*(sum(rank(ui)/outlink(ui)) + sum(rank(uj)/N))
+        n = n - 1
+    return rank;
+
+where : 
+ui = pages with links to v
+uj = pages without outlinks
+d = jump factor
+rank(ui) = rank of page ui in previous iteration
+outlinks(ui) = number of pages ui is pointing at
