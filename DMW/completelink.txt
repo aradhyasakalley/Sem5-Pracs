@@ -1,0 +1,26 @@
+MST complete link algorithm
+
+input : 
+D = {t1,t2,...,tn}
+A = adjacency matrix showing distance between elements
+
+output : 
+DE = dendrogram shown as a set of triplets
+
+MST complete link algorithm :
+
+d = 0;
+k = n;
+K = {{t1},t2,...,{tn}};
+DE = {d,k,K} //initialize a dendrogram witheach element in ist own cluster
+MST(A)
+repeat :
+    oldk = k;
+    Ki,Kj = clusters farthest apart in the set;
+    K = K - {Ki} - {Kj} U {Ki U Kj};
+    k = oldk -1;
+    dis = dis(Ki,Kj);
+    DE = DE u (d,k,K);
+    dis(Ki,Kj) = infinity; //to avoid re-merging
+until = 1;
+

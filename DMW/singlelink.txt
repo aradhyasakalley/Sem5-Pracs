@@ -1,0 +1,23 @@
+Agglomerative algorithm
+input : 
+D = {t1,t2,...tn}
+A = adjacenecy matrix showing distance between elements
+output : 
+DE = dendograms representetd as a set of triples
+
+Agglomerative algorithm 
+d = 0;
+k = n;
+K = {{t1},{t2},...{tn}} // all elements in their own cluster
+
+DE = {d,k,K} //initialize a dendogram with each element
+MST(A) // denerate a MST from teh adjacency matrix
+repeat : 
+    old = k;
+    Ki,Kj = two clusters closest together in MST; 
+    K = K - {Ki} - {Kj} U {Ki U Kj}; // remove Ki and Kj and add merged cluster
+    k = oldk - 1; // decrement number of clusters
+    d = dis(Ki,Kj); 
+    DE = DE u (d,k,K); //new set of clusters added 
+    dis(Ki,Kj) = inf; //to avoid re-merging
+until k = 1;
