@@ -19,3 +19,4 @@ uj = pages without outlinks
 d = jump factor
 rank(ui) = rank of page ui in previous iteration
 outlinks(ui) = number of pages ui is pointing at
+

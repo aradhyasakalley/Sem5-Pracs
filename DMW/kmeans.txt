@@ -11,3 +11,5 @@ Kmeams algorithm :
         assign the item to the cluster with the closest mean;
         re-calculate the means for each cluster;
     until convergence
+
+

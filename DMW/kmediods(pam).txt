@@ -17,3 +17,6 @@ PAM algorithm :
     until TChi >=0;
 
     assign each ti to Kj such that the distance d(ti,tj) is smallest for all mediods;
+
+
+

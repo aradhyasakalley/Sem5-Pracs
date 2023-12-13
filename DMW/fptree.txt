@@ -26,3 +26,16 @@ FPgrowth(Tree,a')
         if Tb != 0 : 
             call FPgrowth(Tb,B)
     }
+
+
+FPgrowth(Tree,alpha) : 
+    if Tree has a single path P do 
+        for each combination of nodes in path P do
+            generate pattern beta U alpha with support_count = min_support of nodes in beta;
+    else for each a in the header of the tree do 
+        generate pattern a U alpha such that support = a/support_count;
+        construct conditional patterns fo and conditional pattern tree for beta 
+        Tree(beta);
+
+    if Tree(beta) != 0 : 
+        call FPgrowth(Tree(beta),beta); 

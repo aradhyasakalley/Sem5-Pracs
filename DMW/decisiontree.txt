@@ -28,3 +28,7 @@ DTProc algo :
         identify the arc from t with correct answer;
         n = node at end of this arc;
     make predictions for t based on lbelling of n 
+
+
+
+

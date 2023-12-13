@@ -21,3 +21,7 @@ repeat :
     DE = DE u (d,k,K); //new set of clusters added 
     dis(Ki,Kj) = inf; //to avoid re-merging
 until k = 1;
+
+
+
+

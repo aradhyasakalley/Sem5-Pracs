@@ -9,7 +9,7 @@ output : P(y|x) posterior prob of class y given instance x
 NaiveBayes algo : 
     training :
     compute the posterior probabilities of each class y in the given dataset P(y)
-    for each fature Xi in each class Y : 
+    for each feature Xi in each class Y : 
         compute the likelihood P(Xi|Y) based on training data
         use suitable prob distribution
     compute the evidence P(X) , the prob of observing features x
@@ -18,4 +18,4 @@ NaiveBayes algo :
          calculate posterior prob P(Y|X) for each class Y using bayes theorem
          P(Y|X) = P(X|Y)*P(Y)/P(X)
          class with highest post prob is predicted class
-         
+
