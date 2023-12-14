@@ -20,6 +20,5 @@ def mpm():
             print("Connection Terminated!")
             s.send("Connection from Client terminated!".encode('ascii'))
             break
-
-
 mpm()
+
