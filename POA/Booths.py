@@ -42,6 +42,7 @@ q1 = '0'
 a = "0"
 a = a.zfill(maxlen)
 rightshift=""
+
 while count > 0:
     if q1 == '1' and q[maxlen-1] == '0':
         a = bin(int(a,2) + int(m,2)).replace('0b','')
@@ -78,5 +79,3 @@ else:
 
 
 
-       
-    

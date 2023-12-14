@@ -46,8 +46,8 @@ def pageReplacementLru(pages, n, capacity):
             indexes[pages[i]] = i
         print('Current set of pages:', s)
     
-    print("Total page faults:", page_faults)
-
+    print("Total page faults:", page_faults)                
+                
 if __name__ == '__main__':
     pages = [7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2]
     n = len(pages)

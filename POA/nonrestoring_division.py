@@ -69,3 +69,5 @@ print(int(a,2))
 print(int(q,2))
 
         
+
+        

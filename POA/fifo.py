@@ -40,3 +40,4 @@ if __name__ == '__main__':
     n = len(pages)
     capacity = 4
     pageReplacementFifo(pages,n,capacity)
+
