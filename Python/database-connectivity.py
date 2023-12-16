@@ -9,17 +9,17 @@ mydb = mysql.connector.connect(
 
 mycursor = mydb.cursor()
 
-# mycursor.execute('show databases')
-# for x in mycursor:
-#     print(x)
+mycursor.execute('show databases')
+for x in mycursor:
+    print(x)
 
-# mycursor.execute('''create table cupboard(
-#  id int(15) not null,
-#  name varchar(75) not null,
-#  price float not null,
-#  count int not null,
-#  primary key(id)
-# )''')
+mycursor.execute('''create table cupboard(
+ id int(15) not null,
+ name varchar(75) not null,
+ price float not null,
+ count int not null,
+ primary key(id)
+)''')
 
 mycursor.execute("show tables")
 for x in mycursor:
