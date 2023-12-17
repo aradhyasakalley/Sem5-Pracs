@@ -3,7 +3,7 @@ def dfs(graph,src,path=[]):
         path.append(src)
         if src == goal_state:
             path.append("(GOAL)")
-            return path
+            return path 
         if src not in graph:
             return path
         
@@ -21,4 +21,5 @@ if "(GOAL)" in path:
     print('goal node found')
 else :
     print('goal node not found')
+
 

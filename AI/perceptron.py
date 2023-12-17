@@ -36,3 +36,4 @@ for epoch in range(epochs):
         print(f"Weight after iteration {idx + 1}: {W}")
 
 print("Final Weight after", epochs, "epochs:", W)
+

@@ -33,5 +33,3 @@ else :
     print('goal state not found')
 
 
-            
-            
