@@ -9,7 +9,7 @@ def dfs(graph,src,path=[]):
         
         for neighbour in graph[src]:
             path = dfs(graph,neighbour,path)
-            if "GOAL" in path:
+            if "(GOAL)" in path:
                 break
     return path
 
@@ -21,4 +21,4 @@ if "(GOAL)" in path:
     print('goal node found')
 else :
     print('goal node not found')
-        
+    

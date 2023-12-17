@@ -1,106 +1,95 @@
-from random import randint
- 
-def selection(li):
-  dec = list(map(lambda x : int(x, 2), li))
- 
-  fit = list(map(lambda x : x*x, dec))
- 
-  s = sum(fit)
-  prob = list(map(lambda x : round(x/s, 3), fit))
- 
-  avg = s/n
-  exe = list(map(lambda x : round(x/avg, 3), fit))
- 
-  ac = list(map(lambda x : round(x), exe))
- 
-  return dec, fit, prob, exe, ac
- 
-def pp(li, ac, n):
-  co = []
-  temp = []
-  index = []
-  for i in range(n):
-    if ac[i] == 1:
-      co.append(li[i])
-    elif ac[i] >= 2:
-      for j in range(ac[i] - 1):
-        temp.append(li[i])
-      co.append(li[i])
-    elif ac[i] == 0 and len(temp) != 0:
-      co.append(temp[0])
-      temp.pop(0)
-    elif ac[i] == 0 and len(temp) == 0:
-      index.append(i)
-  if len(index) != 0 and len(temp) != 0:
-    for i in index:
-      co.insert(i, temp[0])
-      temp.pop(0)
-  elif len(index) != 0 and len(temp) == 0:
-    co.insert(i, li[i])
-  return co
- 
-def cr(x):
-  s = 0
-  for i in x:
-    if i == '1':
-      s = s + 1
-  return s
- 
-def crossing(li, n):
-  crossed = []
-  for i in range(0, n, 2):
-    temp1 = li[i]
-    j = i + 1
-    temp2 = li[j]
-    crosspoint = cr(temp1)
-    print("The crosspoint for pair " + str(i) + " is " + str(crosspoint))
-    temp3 = temp1[crosspoint: ]
-    temp4 = temp2[crosspoint: ]
-    temp1 = temp1[0 : crosspoint] + temp4
-    temp2 = temp2[0 : crosspoint] + temp3
-    crossed.append(temp1)
-    crossed.append(temp2)
-  return crossed
- 
-def mutation(li, n):
-  mut = []
-  for i in li:
-    j = randint(0, n - 1)
-    print("For pair " + str(i) + ", the bit that will be changed is " + str(j))
-    if i[j] == '1':
-      i = i[0 : j] + '0' +i[j + 1 : ]
-      mut.append(i)
-    elif i[j] == '0':
-      i = i[0 : j] + '1' +i[j + 1 : ]
-      mut.append(i)
-  return mut
- 
-n = int(input("Enter number of samples: "))
-sam = []
-for i in range(n):
-  sam.append(input("Enter gene: "))
- 
-m = int(input("Enter number of generations to be computed: "))
-crossed = sam.copy()
-for i in range(m):
-  dec, fit, prob, exe, ac = selection(crossed)
-  s = sum(ac)
-  if s < n:
-    maxi = max(ac)
-    k = ac.index(maxi - 1)
-    ac[k] += 1
-  if s > n:
-    maxi = max(ac)
-    k = ac.index(maxi)
-    ac[k] -= 1
-  print("\n----------------------------------------------- GENERATION ", i, "-----------------------------------------------")
-  print("Initial Population\tX Value\t\tFitness Value\tProbability\tExpected Count\t\tActual Count")
-  for j in range(n):
-    print(crossed[j], "\t\t", dec[j], "\t\t", fit[j], "\t", prob[j], "\t\t", exe[j], "\t\t\t", ac[j])
-  co = pp(crossed, ac, n)
-  print("\nSelected Genes for Crossover - \n", co)
-  crossed = crossing(co, n)
-  print("\nCrossover - \n", crossed)
-  crossed = mutation(crossed, n)
-  print("\nMutated - \n", crossed)
-print("\nGENERATION ", (m + 1), " - ", crossed)
+import random
+
+# returns a list of target length (here 8), with random 0s and 1s
+def generate_individual(length):
+    arr = []
+    for _ in range(length):
+        arr.append(random.choice([0, 1]))
+    return arr
+
+
+# returns count of matching bits in individual and target
+def calculate_fitness(individual, target):
+    count = 0
+    for i in range(len(target)):
+        if individual[i] == target[i]:
+            count += 1
+    return count
+
+
+# returns a child made from parents by randomly picking a split point
+# split both parents at that point, take either half from each parent to make child
+def crossover(parent1, parent2):
+    split_point = random.randint(0, len(parent1) - 1)
+    child = parent1[:split_point] + parent2[split_point:]
+    return child
+
+
+# returns mutated child as per the mutation rate
+# learn - bitwise XOR between bit and result of expression -> (random.random() < mutation_rate))
+# this expression evaluates to True with a probability of mutation_rate
+def mutate(individual, mutation_rate):
+    child = []
+    for bit in individual:
+        child.append(bit ^ (random.random() < mutation_rate))
+    return child
+
+
+def genetic_algorithm(target, population_size, mutation_rate, generations):
+    individual_length = len(target)  # len -> 8
+
+    # step 1 - generate population, as per target length (here 8) and population size
+    population = []
+    for _ in range(population_size):
+        individual = generate_individual(individual_length)
+        population.append(individual)
+
+    # step 2 - for each generation,
+    # calculate fitness for whole population and sort the population in descending order of fitness
+    # highest fitness value means the best individual, now compare it with target
+    # if target is exact same then target reached -> stop the loop
+    for generation in range(generations):
+        population = sorted(
+            population,
+            key=lambda individual: calculate_fitness(individual, target),
+            reverse=True,
+        )
+        best_individual = population[0]
+
+        if calculate_fitness(best_individual, target) == individual_length:
+            print(f"Target reached in generation {generation + 1}!")
+            break
+
+        # step 3 - target not reached, so generate new population before again checking fitness
+        # this is called evolution of the population -> has 3 stages
+
+        # stage 1 - SELECTION -> add best individual to new population
+        # fill remaining population by stage 2 and 3
+        new_population = [best_individual]
+
+        while len(new_population) < population_size:  # till we fill whole population
+            # stage 2 - CROSSOVER -> means mating, so we need 2 random individuals from population as parents
+            parent1 = random.choice(population)
+            parent2 = random.choice(population)
+            child = crossover(parent1, parent2)
+
+            # stage 3 - MUTATION -> from above generated child, we mutate it to get the final new individual
+            child = mutate(child, mutation_rate)
+
+            # finally append the child to new population
+            new_population.append(child)
+
+        # set population array, again go to step 2
+        population = new_population
+
+    return population[0]
+
+
+target_binary = [1, 0, 1, 0, 0, 0, 0, 1]  # len -> 8
+population_size = 100
+mutation_rate = 0.01
+generations = 1000
+
+result = genetic_algorithm(target_binary, population_size, mutation_rate, generations)
+
+print(f"Best individual of the evolved population: {result}")
