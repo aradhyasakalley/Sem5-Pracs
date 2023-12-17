@@ -10,7 +10,6 @@ X = [X1, X2, X3]
 # Initialize weight vector W
 W = np.array([1, -1, 0, 0.5])
 
-# Define target outputs (desired classes) for the training examples
 d = [-1, -1, 1]
 
 # Set learning rate (step size)

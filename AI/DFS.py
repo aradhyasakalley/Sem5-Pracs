@@ -14,11 +14,11 @@ def dfs(graph,src,path=[]):
     return path
 
 graph = {"5": ["3", "7"], "3": ["2", "4"], "7": ["8"], "2": [], "4": ["8"], "8": []}
-goal_state = "8"
+goal_state = "7"
 path = dfs(graph,"5")
 print(" -> ".join(path))
 if "(GOAL)" in path:
     print('goal node found')
 else :
     print('goal node not found')
-    
+

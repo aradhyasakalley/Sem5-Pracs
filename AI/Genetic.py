@@ -1,13 +1,10 @@
 import random
-
 # returns a list of target length (here 8), with random 0s and 1s
 def generate_individual(length):
     arr = []
     for _ in range(length):
         arr.append(random.choice([0, 1]))
     return arr
-
-
 # returns count of matching bits in individual and target
 def calculate_fitness(individual, target):
     count = 0
@@ -15,16 +12,12 @@ def calculate_fitness(individual, target):
         if individual[i] == target[i]:
             count += 1
     return count
-
-
 # returns a child made from parents by randomly picking a split point
 # split both parents at that point, take either half from each parent to make child
 def crossover(parent1, parent2):
     split_point = random.randint(0, len(parent1) - 1)
     child = parent1[:split_point] + parent2[split_point:]
     return child
-
-
 # returns mutated child as per the mutation rate
 # learn - bitwise XOR between bit and result of expression -> (random.random() < mutation_rate))
 # this expression evaluates to True with a probability of mutation_rate
@@ -33,7 +26,6 @@ def mutate(individual, mutation_rate):
     for bit in individual:
         child.append(bit ^ (random.random() < mutation_rate))
     return child
-
 
 def genetic_algorithm(target, population_size, mutation_rate, generations):
     individual_length = len(target)  # len -> 8
@@ -93,3 +85,4 @@ generations = 1000
 result = genetic_algorithm(target_binary, population_size, mutation_rate, generations)
 
 print(f"Best individual of the evolved population: {result}")
+
