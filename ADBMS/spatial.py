@@ -28,7 +28,7 @@ data = {
                 "time": 24.0,
             },
         },
-        {
+        { 
             "type": "Feature",
             "geometry": {
                 "type": "Polygon",

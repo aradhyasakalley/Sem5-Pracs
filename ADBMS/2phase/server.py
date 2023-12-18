@@ -3,35 +3,33 @@ host = "127.0.0.1"
 port = 8000
 
 s = socket.socket()
-s.bind((host,port))
+s.bind((host, port))
 s.listen(3)
-print('server is running')
+print("SERVER IS RUNNING")
 
 msg = "PREPARE"
 log = msg
-over = 0 
+over = 0
 
-while True : 
+while True:
     replies = []
-    print(f"coordinators : {msg.upper()}")
+    print(f"COORDINATOR: {msg.upper()}")
     for i in range(3):
-        c,addr = s.accept()
-        s.send(msg.encode())
+        c,adrr = s.accept()
+        c.send(msg.encode())
         data = c.recv(1024).decode()
         replies.append(data.upper())
-        print(f"subordinator {i} {addr} : {data.upper()}")
-        
-    if over == 1: 
+        print(f"Subordinator {i} {adrr} : {data.upper()}")
+    if over == 1:
         break
-    if "ABORT" in replies : 
+    if "ABORT" in replies:
         msg = "ABORT"
         print(f"TRANSACTION LOG : {log} {msg}")
         over = 1
-    elif "SUCCESS" in replies : 
+    elif "SUCCESS" in replies:
         msg = "COMPLETE"
         print(f"TRANSACTION LOG : {log} {msg}")
         over = 1
-    else : 
+    else:
         msg = "COMMIT"
-        log = " "+msg
-        
+        log += " "+ msg
