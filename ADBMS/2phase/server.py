@@ -33,3 +33,4 @@ while True:
     else:
         msg = "COMMIT"
         log += " "+ msg
+

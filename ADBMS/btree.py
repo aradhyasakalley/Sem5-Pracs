@@ -20,3 +20,4 @@ else :
 end_time = time.perf_counter()
 
 print(f'The search time for the BTree is {round((end_time - start_time) * 1000, 3)} milliseconds')
+

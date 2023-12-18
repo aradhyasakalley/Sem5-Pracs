@@ -30,3 +30,4 @@ while True:
     except:
         print("END OF TRANSACTION \nFinal log is:", log + " " + data)
         break
+
